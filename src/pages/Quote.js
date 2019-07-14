@@ -12,21 +12,19 @@ const Quote = () => {
                 <div className="row">
                     <SongConsumer>
                         {({favoriteSong})=> {
-                            console.log(favoriteSong)
                             return(
                                 favoriteSong !== undefined ? (
                                     favoriteSong.map(song => {
                                         return(
                                             <div className="col-md-4">
                                                 <SoundComponent className="card">
-                                                    <Sounds index={song.id} title={song.title} soundFile={song.url}/>
+                                                    <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
                                                 </SoundComponent>
                                             </div>
                                         )
                                     })
                                     ):
-                                    ""
-
+                                    <h2>Vous n'avez pas encore de quote favorite</h2>
                             )
                         }}
                     </SongConsumer>
@@ -34,12 +32,16 @@ const Quote = () => {
             </div>
         </>
     )
-}
+};
 
 const SoundComponent = styled.div`
-background-color:grey;
-height:200px;
-box-shadow: 10px 10px 44px -10px rgba(0,0,0,0.75);
-`
+background-color:#fff;
+transition:all ease-in .3s;
+
+
+&:hover {
+box-shadow: 1px 4px 13px 3px rgba(0,0,0,0.2);
+}
+`;
 
 export default Quote

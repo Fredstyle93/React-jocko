@@ -2,7 +2,9 @@ import React from 'react';
 import Sound from 'react-sound';
 import {SongConsumer} from "../context";
 import {withRouter} from 'react-router-dom'
-import {FaPlay , FaStop, FaPause , FaHeart} from "react-icons/fa"
+import {FaPlay , FaStop, FaPause , FaHeart , FaTimes} from "react-icons/fa"
+import styled from 'styled-components'
+
 
 
 
@@ -10,11 +12,12 @@ class Sounds extends React.Component {
 
         state = {
             status : Sound.status.STOPPED,
+            image: [],
             buttonText: <FaPlay/>,
             duration: Sound.status.duration
         };
 
-        toggleStatus = () => {
+    toggleStatus = () => {
     console.log(this.state.duration)
             this.state.status === Sound.status.PLAYING ? (
 
@@ -31,6 +34,7 @@ class Sounds extends React.Component {
 
         };
 
+
         stopPlaying = () => {
             this.setState({
                 status: Sound.status.STOPPED,
@@ -41,12 +45,22 @@ class Sounds extends React.Component {
     render() {
         return (
             <div>
+                <img className="card-img-top" src={this.props.img} alt="Card image cap"/>
                 <h3 className="card-title pt-1">{this.props.title}</h3>
-                {this.props.history.location.pathname === '/quote' ? "" : (
-                    <SongConsumer>
-                        {({handleAdd})=>{
+                {this.props.history.location.pathname === '/quote' ?
+                    (                    <SongConsumer>
+                        {({removeSong, favoriteSong, initialSong})=>{
                             return(
-                                <i className="heart" onClick={() => handleAdd(this.props.index)}><FaHeart/></i>
+                                <StyledButton className="heart" onClick={() => removeSong(this.props.index)}><FaTimes/></StyledButton>
+                            )
+                        }}
+                    </SongConsumer>)
+                    : (
+                    <SongConsumer>
+                        {({handleAdd, favoriteSong, initialSong})=>{
+                            const haveIt = favoriteSong.filter(song => { return song.id == this.props.index}).length != 0
+                            return(
+                                <StyledButton disabled={haveIt} className="heart" onClick={() => handleAdd(this.props.index)}><FaHeart/></StyledButton>
                             )
                         }}
                     </SongConsumer>
@@ -68,5 +82,19 @@ class Sounds extends React.Component {
         );
     }
 }
+
+const StyledButton = styled.button`
+    background-color: transparent;
+    color: black;
+    border: none;
+    
+    &:hover {
+    color: white;
+    }
+    
+    &:disabled {
+    color: rgba(242, 38, 19, 1)
+    }
+`;
 
 export default withRouter(Sounds)

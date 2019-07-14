@@ -1,13 +1,46 @@
 body {
   font-family: 'Gabriela', serif;
-  background-color: #0d0707;
+
+  background-image: url("images/usa.png");
+  background-repeat: no-repeat;
+  background-size: 900px;
+  background-position-y: 1054px;
+  background-position-x: -184px;
+
 }
+
 
 .hero {
   background-image: url("images/index.jpg");
-  background-position: -200px -292px;
+  background-position:-400px;
   background-size: auto;
   height: 70vh;
+}
+
+header {
+  position: relative;
+}
+
+header::after {
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  z-index: -333;
+  height: 500px;
+  background-image: url("images/BG.png");
+}
+
+.callout {
+  position: fixed;
+  right: 30px;
+  display: none;
+}
+
+
+.card-img-top {
+  display: inline-block;
+  box-shadow: -2px 6px 21px -8px rgba(0,0,0,0.75);
 }
 
 
@@ -22,13 +55,24 @@ body {
   text-align: center;
 }
 
+.navbar {
+  background-color:#0d0707 !important;
+}
+
 .play {
   margin-right: .5em;
 }
 
 .card-body {
   position: relative;
-  bottom: 1.5em;
+  box-shadow: 0px -6px 8px -6px rgba(0,0,0,0.2);
+  background-color: #ed2224;
+/*  bottom: 1.5em;*/
+  padding: .5em !important;
+}
+
+.card-body i {
+  color: #fff;
 }
 
 h3 {
@@ -37,7 +81,12 @@ h3 {
 }
 
 .card {
-  margin-top: 1.5em;
+  margin-top: 5em;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 2em;
 }
 
 .css-live-wrap {
@@ -48,8 +97,14 @@ h3 {
 }
 
 .form-control {
-  width: 25% !important;
+  width: 80% !important;
   margin: 2em auto;
+}
+
+@media screen and (min-width: 600px) {
+  .form-control {
+    width: 25% !important;
+  }
 }
 
 h1,h2,h3,h4,h5 {

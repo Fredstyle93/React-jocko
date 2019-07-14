@@ -12,6 +12,9 @@ class Home extends React.Component {
         return(
             <>
                 <Banner/>
+                <div className="alert alert-primary callout" role="alert">
+                    This is a secondary alert—check it out!
+                </div>
                 <Search className="search"/>
                 <div className="container main-cont">
                     <div className="row">
@@ -22,7 +25,7 @@ class Home extends React.Component {
                                             return(
                                                 <div className="col-md-4">
                                                     <SoundComponent className="card">
-                                                        <Sounds index={song.id} title={song.title} soundFile={song.url}/>
+                                                        <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
                                                     </SoundComponent>
                                                 </div>
                                             )
@@ -40,9 +43,13 @@ class Home extends React.Component {
 };
 
 const SoundComponent = styled.div`
-background-color:grey;
-height:100px;
-box-shadow: 10px 10px 44px -10px rgba(0,0,0,0.75);
+background-color:#fff;
+transition:all ease-in .3s;
+
+
+&:hover {
+box-shadow: 1px 4px 13px 3px rgba(0,0,0,0.2);
+}
 `
 
 export default Home;

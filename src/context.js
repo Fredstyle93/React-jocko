@@ -25,6 +25,12 @@ class SongProvider extends React.Component {
         })
     }
 
+    removeSong = (id) => {
+        this.setState({
+            favoriteSong: this.state.favoriteSong.filter(song => {return song.id !== id})
+        })
+    }
+
     handleChange = e => {
         this.setState({query: e.target.value});
         if(this.state.query == "") {
@@ -47,7 +53,9 @@ class SongProvider extends React.Component {
                 songs: this.state.songs,
                 handleChange: this.handleChange,
                 handleAdd: this.handleAdd,
-                favoriteSong: this.state.favoriteSong
+                favoriteSong: this.state.favoriteSong,
+                initialSong: this.state.initialsong,
+                removeSong: this.removeSong
             }}>
                 {this.props.children}
             </Provider>
