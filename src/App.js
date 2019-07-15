@@ -6,17 +6,27 @@ import Quote from './pages/Quote'
 import './App.css';
 import Nav from "./components/Nav";
 
-function App() {
-  return (
-      <>
-        <Nav/>
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/quote" component={Quote}/>
-        <Route component={Error}/>
-      </Switch>
-        </>
-  );
+
+class App extends React.Component{
+
+
+    state = {
+        favoriteSong: []
+    }
+
+    render() {
+        return (
+            <>
+                <Nav/>
+                <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/quote" component={Quote}/>
+                    <Route component={Error}/>
+                </Switch>
+            </>
+        );
+    }
+
 }
 
 export default App;

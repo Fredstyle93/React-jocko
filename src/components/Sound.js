@@ -4,6 +4,7 @@ import {SongConsumer} from "../context";
 import {withRouter} from 'react-router-dom'
 import {FaPlay , FaStop, FaPause , FaHeart , FaTimes} from "react-icons/fa"
 import styled from 'styled-components'
+import * as firebase from 'firebase'
 
 
 
@@ -14,8 +15,32 @@ class Sounds extends React.Component {
             status : Sound.status.STOPPED,
             image: [],
             buttonText: <FaPlay/>,
-            duration: Sound.status.duration
+            duration: Sound.status.duration,
+            favoriteSong: []
         };
+
+        componentDidMount() {
+            this.syncState()
+            console.log(this.state.favoriteSong)
+        }
+
+    syncState = () => {
+
+                const ref = firebase.database().ref('favoriteSong');
+                ref.on('value', snap => {
+
+                    let resp = [];
+                    if(snap.val() !== null) {
+                        resp = Object.values(snap.val())
+                    } else {
+                        resp = []
+                    }
+                    this.setState({
+                        favoriteSong: resp || []
+                    })
+                });
+
+    }
 
     toggleStatus = () => {
     console.log(this.state.duration)
@@ -34,6 +59,17 @@ class Sounds extends React.Component {
 
         };
 
+    removeSong = (id) => {
+        this.setState({
+            favoriteSong: this.state.favoriteSong.filter(song => {return song.id !== id})
+        })
+        const song = firebase.database().ref('favoriteSong');
+        var query = song.orderByChild('id').equalTo(id);
+        query.once('child_added', function(snapshot) {
+            snapshot.ref.remove();
+        })
+    }
+
 
         stopPlaying = () => {
             this.setState({
@@ -49,16 +85,16 @@ class Sounds extends React.Component {
                 <h3 className="card-title pt-1">{this.props.title}</h3>
                 {this.props.history.location.pathname === '/quote' ?
                     (                    <SongConsumer>
-                        {({removeSong, favoriteSong, initialSong})=>{
+                        {()=>{
                             return(
-                                <StyledButton className="heart" onClick={() => removeSong(this.props.index)}><FaTimes/></StyledButton>
+                                <StyledButton className="heart" onClick={() => this.removeSong(this.props.index)}><FaTimes/></StyledButton>
                             )
                         }}
                     </SongConsumer>)
                     : (
                     <SongConsumer>
-                        {({handleAdd, favoriteSong, initialSong})=>{
-                            const haveIt = favoriteSong.filter(song => { return song.id == this.props.index}).length != 0
+                        {({handleAdd})=>{
+                            const haveIt = this.state.favoriteSong.filter(song => { return song.id == this.props.index}).length != 0
                             return(
                                 <StyledButton disabled={haveIt} className="heart" onClick={() => handleAdd(this.props.index)}><FaHeart/></StyledButton>
                             )

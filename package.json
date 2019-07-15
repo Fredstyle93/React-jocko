@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "firebase": "^6.3.0",
     "react": "^16.8.6",
     "react-callout": "^0.1.1",
     "react-dom": "^16.8.6",

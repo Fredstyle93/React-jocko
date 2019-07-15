@@ -1,9 +1,30 @@
 import React from 'react';
 import {songsData} from "./data";
+import * as firebase from 'firebase'
+import {config} from "./config/config";
 
 const {Provider , Consumer} = React.createContext();
 
 class SongProvider extends React.Component {
+
+    constructor(props) {
+        super(props);
+        firebase.initializeApp(config);
+    }
+/*
+    componentWillMount() {
+        const ref = firebase.database().ref('favoriteSong');
+
+        ref.on('value', snap => {
+            this.setState({
+                favoriteSong: snap.val()
+            })
+        });
+
+        console.log(this.state.favoriteSong)
+    }
+
+*/
     state = {
         initialsong: songsData,
         songs : songsData,
@@ -15,14 +36,31 @@ class SongProvider extends React.Component {
         this.setState({songs: this.state.initialsong})
     }
 
+    syncState = () => {
+
+        const ref = firebase.database().ref('favoriteSong');
+
+        ref.on('value', snap => {
+            let resp = [];
+            if(snap.val() !== null) {
+                resp = Object.values(snap.val())
+            } else {
+                resp = []
+            }
+            this.setState({
+                favoriteSong: resp || []
+            })
+        })
+
+    }
+
     handleAdd = id => {
+
         const newSong = this.state.initialsong.filter(song => {
                 return song.id === id;
         });
-
-        this.setState({
-            favoriteSong: [...this.state.favoriteSong, newSong[0] ]
-        })
+        firebase.database().ref('favoriteSong').push(newSong[0]);
+        this.syncState();
     }
 
     removeSong = (id) => {
@@ -55,7 +93,8 @@ class SongProvider extends React.Component {
                 handleAdd: this.handleAdd,
                 favoriteSong: this.state.favoriteSong,
                 initialSong: this.state.initialsong,
-                removeSong: this.removeSong
+                removeSong: this.removeSong,
+                syncState: this.syncState
             }}>
                 {this.props.children}
             </Provider>
