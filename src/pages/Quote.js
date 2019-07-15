@@ -19,19 +19,12 @@ class Quote extends React.Component{
                 this.setState({
                     favoriteSong: resp
                 })
-        })
-
-
-        console.log(this.state.favoriteSong)
-    }
-
+        });
+    };
 
     componentDidMount() {
         this.syncState();
     }
-
-
-
 
     state = {
         favoriteSong:[]
@@ -42,34 +35,27 @@ class Quote extends React.Component{
         return (
             <>
                 <h2>My quote</h2>
-
                 <div className="container">
                     <div className="row">
-                        <SongConsumer>
-                            {({favoriteSong})=> {
-                                console.log(favoriteSong)
-                                return(
-                                    this.state.favoriteSong !== undefined ? (
-                                            this.state.favoriteSong.map(song => {
-                                                return(
-                                                    <div className="col-md-4">
-                                                        <SoundComponent className="card">
-                                                            <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
-                                                        </SoundComponent>
-                                                    </div>
-                                                )
-                                            })
-                                        ):
-                                        <h2>Vous n'avez pas encore de quote favorite</h2>
-                                )
-                            }}
-                        </SongConsumer>
+                        {
+                        this.state.favoriteSong !== undefined ? (
+                                this.state.favoriteSong.map(song => {
+                                    return(
+                                        <div className="col-md-4">
+                                            <SoundComponent className="card">
+                                                <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
+                                            </SoundComponent>
+                                        </div>
+                                    )
+                                })
+                            ):
+                            <h2>Vous n'avez pas encore de quote favorite</h2>
+                        }
                     </div>
                 </div>
             </>
         )
     }
-
 };
 
 const SoundComponent = styled.div`

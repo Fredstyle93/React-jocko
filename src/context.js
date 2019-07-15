@@ -11,20 +11,7 @@ class SongProvider extends React.Component {
         super(props);
         firebase.initializeApp(config);
     }
-/*
-    componentWillMount() {
-        const ref = firebase.database().ref('favoriteSong');
 
-        ref.on('value', snap => {
-            this.setState({
-                favoriteSong: snap.val()
-            })
-        });
-
-        console.log(this.state.favoriteSong)
-    }
-
-*/
     state = {
         initialsong: songsData,
         songs : songsData,
@@ -52,7 +39,7 @@ class SongProvider extends React.Component {
             })
         })
 
-    }
+    };
 
     handleAdd = id => {
 
@@ -61,13 +48,7 @@ class SongProvider extends React.Component {
         });
         firebase.database().ref('favoriteSong').push(newSong[0]);
         this.syncState();
-    }
-
-    removeSong = (id) => {
-        this.setState({
-            favoriteSong: this.state.favoriteSong.filter(song => {return song.id !== id})
-        })
-    }
+    };
 
     handleChange = e => {
         this.setState({query: e.target.value});

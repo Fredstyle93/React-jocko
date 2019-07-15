@@ -22,8 +22,6 @@ class Banner extends React.Component{
             "I just got fired Good, now I can find a better opportunity and move onto better things.",
             "Alarm goes off in the morning. Good. Another chance to hit snooze.",
         ];
-
-        let resp = Math.floor(Math.random() * 6);
          setInterval(() => this.setState({ thequote: quote[Math.floor(Math.random() * 6)] }), 3000);
     }
 
@@ -31,7 +29,7 @@ class Banner extends React.Component{
         return (
             <HeaderNav>
                 <div className="hero">
-                    <h1 className="main-quote">{this.state.thequote }</h1>
+                    <h1 className="main-quote">{this.state.thequote}</h1>
                 </div>
             </HeaderNav>
         )

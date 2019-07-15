@@ -68,7 +68,7 @@ class Sounds extends React.Component {
         query.once('child_added', function(snapshot) {
             snapshot.ref.remove();
         })
-    }
+    };
 
 
         stopPlaying = () => {
@@ -84,25 +84,19 @@ class Sounds extends React.Component {
                 <img className="card-img-top" src={this.props.img} alt="Card image cap"/>
                 <h3 className="card-title pt-1">{this.props.title}</h3>
                 {this.props.history.location.pathname === '/quote' ?
-                    (                    <SongConsumer>
-                        {()=>{
-                            return(
-                                <StyledButton className="heart" onClick={() => this.removeSong(this.props.index)}><FaTimes/></StyledButton>
-                            )
-                        }}
-                    </SongConsumer>)
+                    (
+                        <StyledButton className="heart" onClick={() => this.removeSong(this.props.index)}><FaTimes/></StyledButton>
+                    )
                     : (
-                    <SongConsumer>
-                        {({handleAdd})=>{
-                            const haveIt = this.state.favoriteSong.filter(song => { return song.id == this.props.index}).length != 0
-                            return(
-                                <StyledButton disabled={haveIt} className="heart" onClick={() => handleAdd(this.props.index)}><FaHeart/></StyledButton>
-                            )
-                        }}
-                    </SongConsumer>
+                        <SongConsumer>
+                            {({handleAdd})=>{
+                                const haveIt = this.state.favoriteSong.filter(song => { return song.id == this.props.index}).length != 0
+                                return(
+                                    <StyledButton disabled={haveIt} className="heart" onClick={() => handleAdd(this.props.index)}><FaHeart/></StyledButton>
+                                )
+                            }}
+                        </SongConsumer>
                 )}
-
-
                 <div className="card-body text-center">
                     <Sound
                         url={this.props.soundFile}

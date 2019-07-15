@@ -2,7 +2,6 @@ import React from 'react'
 import Banner from "../components/Banner";
 import Sounds from "../components/Sound";
 import styled from 'styled-components'
-import {songsData} from "../data";
 import Search from "../components/Search";
 import {SongConsumer} from '../context'
 
@@ -13,9 +12,6 @@ class Home extends React.Component {
         return(
             <>
                 <Banner/>
-                <div className="alert alert-primary callout" role="alert">
-                    This is a secondary alert—check it out!
-                </div>
                 <Search className="search"/>
                 <div className="container main-cont">
                     <div className="row">
@@ -23,20 +19,19 @@ class Home extends React.Component {
                             {({songs})=> {
                                 return(
                                     songs.map(song => {
-                                            return(
-                                                <div className="col-md-4">
-                                                    <SoundComponent className="card">
-                                                        <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
-                                                    </SoundComponent>
-                                                </div>
-                                            )
-                                        })
+                                        return(
+                                            <div className="col-md-4">
+                                                <SoundComponent className="card">
+                                                    <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
+                                                </SoundComponent>
+                                            </div>
+                                        )
+                                    })
                                 )
                             }}
                         </SongConsumer>
                     </div>
                 </div>
-
             </>
         )
     }
