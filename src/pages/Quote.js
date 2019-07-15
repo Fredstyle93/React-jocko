@@ -2,36 +2,74 @@ import React from 'react';
 import {SongConsumer} from "../context";
 import Sounds from "../components/Sound";
 import styled from "styled-components";
+import * as firebase from 'firebase'
 
-const Quote = () => {
-    return (
-        <>
-        <h2>My quote</h2>
+class Quote extends React.Component{
 
-            <div className="container">
-                <div className="row">
-                    <SongConsumer>
-                        {({favoriteSong})=> {
-                            return(
-                                favoriteSong !== undefined ? (
-                                    favoriteSong.map(song => {
-                                        return(
-                                            <div className="col-md-4">
-                                                <SoundComponent className="card">
-                                                    <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
-                                                </SoundComponent>
-                                            </div>
-                                        )
-                                    })
-                                    ):
-                                    <h2>Vous n'avez pas encore de quote favorite</h2>
-                            )
-                        }}
-                    </SongConsumer>
+    syncState = () => {
+        const ref = firebase.database().ref('favoriteSong');
+        ref.on('value', snap => {
+            let resp = [];
+            if(snap.val() !== null) {
+                resp = Object.values(snap.val())
+            } else {
+                resp = []
+            }
+            console.log();
+                this.setState({
+                    favoriteSong: resp
+                })
+        })
+
+
+        console.log(this.state.favoriteSong)
+    }
+
+
+    componentDidMount() {
+        this.syncState();
+    }
+
+
+
+
+    state = {
+        favoriteSong:[]
+    }
+
+    render(){
+
+        return (
+            <>
+                <h2>My quote</h2>
+
+                <div className="container">
+                    <div className="row">
+                        <SongConsumer>
+                            {({favoriteSong})=> {
+                                console.log(favoriteSong)
+                                return(
+                                    this.state.favoriteSong !== undefined ? (
+                                            this.state.favoriteSong.map(song => {
+                                                return(
+                                                    <div className="col-md-4">
+                                                        <SoundComponent className="card">
+                                                            <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
+                                                        </SoundComponent>
+                                                    </div>
+                                                )
+                                            })
+                                        ):
+                                        <h2>Vous n'avez pas encore de quote favorite</h2>
+                                )
+                            }}
+                        </SongConsumer>
+                    </div>
                 </div>
-            </div>
-        </>
-    )
+            </>
+        )
+    }
+
 };
 
 const SoundComponent = styled.div`
