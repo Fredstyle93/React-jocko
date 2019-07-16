@@ -1,0 +1,99 @@
+DATA.JS
+
+1. Importer le son good.mp3 dans le fichier
+2. Créer et exporter une constante de type [] contenant un objet qui contient une propriété url avec comme valeur le lien du fichier importé au numéro 1
+
+COMPONENTS
+
+3. créer un component dans le fichier components ( pour l'exemple elle se nomme Quicksound.js )
+
+QUICKSOUND.JS
+
+Dans le fichier quicksound.js nous avons besoin de 3 éléments important
+
+- un state ( qui permettra de changer le son de "play" à "stop")
+- un bouton ( qui lancera le son)
+- une fonction (qui sera trigger lorsque lorsque le bouton est cliqué)
+
+4. Importer react
+5. Importer la librairie Sound de react-sound ( voir sound.js )
+6. Créer un class based component qui a le même nom que le fichier.
+	Note: Une composante doit toujours retourner un seul élément.
+		
+	exemple d'une composante fonctionnelle :  
+
+		const Exemple = () => { 
+			return(
+			<div>
+			   //code ici
+			</div>
+			)
+		}
+
+	exemple d'un class based component : 
+
+			class ExempleClass extends React.Component {
+
+                state = {
+                    // ici c'est un objet
+                }
+
+
+                //logique ici
+                exempleFonction = () => {
+                    //code
+                }
+
+				render(){
+					return(
+					       <div>
+                            {/* Lorsque nous sommes dans une classe on doit 
+                            toujours appeler une fonction en la préfixant de this pour
+                             faire référence à la classe  dans notre exemple -> this.exempleFonction */}
+			                </div>
+				        )
+				    }
+			    }
+
+la différence entre les deux est que le class based component permet d'insérer de la logique.
+
+7. Créer un state qui contiendra seulement une propriété status:Sound.status.PAUSED  (Sound est le nom que tu as donné à l'import de la ligne 5)
+8. Utiliser la composante Sound importée à la ligne 5 à l'intérieur du component créé (la mettre dans la fonction render)
+// la composante Sound devra recevoir 2 props afin de fonctionner correctement.
+- playstatus (elle détermine le status du son, dans notre cas nous allons utiliser 
+  le state afin de le faire jouer donc le playstatus devra être égal à this.state.status (qui fait référence à la valeur status de ton objet state))
+  
+  pour utiliser un props ->  <MaComposante unProps={sa valeur} unAutreProps={sa valeur} />
+
+- url (L'url sera reçu de la composante Home.js)  -> quand on passe une valeur d'un composant à l'autre on utilise un props.
+
+<ComposanteParent nom = "Félix"/>
+
+    //
+    <ComposanteEnfant>
+    {this.props.nom} (qui a été passé à la ligne 70)
+    </ComposanteEnfant>
+9. Créer une fonction play() qui changera le state de notre composante
+    Lorsqu'on veut changer le state on utilise la fonction setState elle s'utilise comme suis->
+            
+        test = () => {
+            this.setState({ laPropriétéDeTonStateQueTuVeuxChanger: saNouvelleValeur }) dans notre cas on veut changer Sound.status.STOPPED pour Sound.status.PLAYING
+        }
+
+10. Créer un bouton sous la composante Sound qui aura un attribut OnClick et qui appèlera la fonction
+
+11. exporter la composante.
+
+
+HOME.JS
+
+12. importer notre composante quicksound
+
+13. importer notre son qui provient du data.js , comme nous l'avons mis dans une constante et que nous voulons seulement celle ci, nous la déconstruirons
+donc import {leNomDeTaFonction} from "../data"  les {} sont importants, ils permettent de cibler seulement la fonction
+
+14. Placer la composante dans le render de la page ->  <TaComposante/>  et lui envoyer l'url en props <TaComposante url = {tonImportLigne13}/>
+Ensuite dans la composante Sound du fichier QuickSound.js tu recevra cette valeur url par les props et tu pourra la placer.
+
+Facile non ?
+
