@@ -1,3 +1,15 @@
+﻿Pour lancer le projet : 
+
+à la racine :  
+npm install
+npm start
+
+aller à localhost:3000
+
+
+
+
+
 DATA.JS
 
 1. Importer le son good.mp3 dans le fichier
