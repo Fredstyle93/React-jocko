@@ -1,17 +1,11 @@
 import React from 'react';
 import {songsData} from "./data";
 import * as firebase from 'firebase'
-import {config} from "./config/config";
+
 
 const {Provider , Consumer} = React.createContext();
 
 class SongProvider extends React.Component {
-
-    constructor(props) {
-        super(props);
-        firebase.initializeApp(config);
-    }
-
     state = {
         initialsong: songsData,
         songs : songsData,
@@ -25,7 +19,7 @@ class SongProvider extends React.Component {
 
     syncState = () => {
 
-        const ref = firebase.database().ref('favoriteSong');
+        const ref = firebase.database().ref(`favoriteSong/${firebase.auth().currentUser.uid}`);
 
         ref.on('value', snap => {
             let resp = [];
@@ -39,15 +33,6 @@ class SongProvider extends React.Component {
             })
         })
 
-    };
-
-    handleAdd = id => {
-
-        const newSong = this.state.initialsong.filter(song => {
-                return song.id === id;
-        });
-        firebase.database().ref('favoriteSong').push(newSong[0]);
-        this.syncState();
     };
 
     handleChange = e => {

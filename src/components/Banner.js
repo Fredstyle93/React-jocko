@@ -15,11 +15,11 @@ class Banner extends React.Component{
 
     displayQuote = () => {
         let quote = [
-            "Forgot to buy condoms....Good.I’ve always wanted kids.",
-            "Erectile disfuction?...Good. More time to cuddle.",
-            "Is your refrigerator running? GOOD. Get after it.",
-            "Lost my left leg good Im right footed.",
-            "I just got fired Good, now I can find a better opportunity and move onto better things.",
+            "Forgot to buy condoms... Good. I’ve always wanted kids.",
+            "Erectile disfuction?... Good. More time to cuddle.",
+            "Is your refrigerator running? Good. Get after it.",
+            "Lost my left leg. Good. Im right footed.",
+            "I just got fired. Good, now I can find a better opportunity and move onto better things.",
             "Alarm goes off in the morning. Good. Another chance to hit snooze.",
         ];
          setInterval(() => this.setState({ thequote: quote[Math.floor(Math.random() * 6)] }), 3000);
