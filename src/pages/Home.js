@@ -4,6 +4,7 @@ import Sounds from "../components/Sound";
 import styled from 'styled-components'
 import Search from "../components/Search";
 import {SongConsumer} from '../context'
+import * as firebase from 'firebase'
 
 
 class Home extends React.Component {

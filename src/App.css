@@ -52,7 +52,14 @@ header::after {
 
 .main-quote {
   padding-top: 5em;
+  color: white;
   text-align: center;
+}
+
+.back-arrow {
+  position: absolute;
+  left: 20px;
+  top: 20px;
 }
 
 .navbar {

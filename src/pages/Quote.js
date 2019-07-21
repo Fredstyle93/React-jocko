@@ -7,7 +7,7 @@ import * as firebase from 'firebase'
 class Quote extends React.Component{
 
     syncState = () => {
-        const ref = firebase.database().ref('favoriteSong');
+        const ref = firebase.database().ref(`favoriteSong/${firebase.auth().currentUser.uid}`);
         ref.on('value', snap => {
             let resp = [];
             if(snap.val() !== null) {

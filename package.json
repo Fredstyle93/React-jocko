@@ -4,14 +4,17 @@
   "private": true,
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "firebase": "^6.3.0",
+    "bootstrap": "^4.3.1",
+    "firebase": "^6.3.1",
     "react": "^16.8.6",
+    "react-burger-menu": "^2.6.10",
     "react-callout": "^0.1.1",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-sound": "^1.2.0",
+    "react-with-firebase-auth": "^1.0.3",
     "styled-components": "^4.3.2"
   },
   "scripts": {
