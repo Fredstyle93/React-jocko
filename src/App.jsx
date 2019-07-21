@@ -4,13 +4,22 @@ import Home from './pages/Home';
 import Quote from './pages/Quote';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Users from './pages/Users';
 import './App.css';
 import Menu from './components/Menu';
 import * as firebase from 'firebase'
 import {config} from "./config/config";
-import withFirebaseAuth from 'react-with-firebase-auth'
 import 'firebase/auth';
 import ForgotPassword from "./pages/ForgotPassword";
+import * as admin from 'firebase-admin';
+let refreshToken;
+admin.initializeApp({
+    credential: admin.credential.refreshToken(refreshToken),
+    databaseURL: 'https://jocko-b1f23.firebaseio.com.firebaseio.com'
+});
+
+const adminvar = admin.initializeApp();
+
 
 const firebaseApp = firebase.initializeApp(config);
 
@@ -23,7 +32,6 @@ class App extends React.Component {
     authListener = () => {
 
     firebaseApp.auth().onAuthStateChanged(user => {
-        console.log(user)
         if(user) {
             this.setState({
                 user: ""
@@ -49,6 +57,7 @@ class App extends React.Component {
                     <Menu />
                     <Switch>
                         <Route exact path="/" component={Home} />
+                        <Route exact path="/users" component={Users} />
                         <Route exact path="/quote" component={Quote} />
                         <Redirect from="/login" to="/"/>
                         <Route component={Error} />

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BurgerMenu from 'react-burger-menu';
 import * as firebase from "firebase";
 import {Link} from "react-router-dom";
-import {FaHome, FaHeart , FaArrowLeft, FaUser} from "react-icons/fa";
+import {FaHome, FaHeart , FaArrowLeft, FaUser, FaUsers} from "react-icons/fa";
 
 
 class Menu extends Component {
@@ -37,6 +37,7 @@ class Menu extends Component {
                 items = [
                     <Link to="/" className="nav-link" href="#"><FaHome className="icon-menu"/>Home</Link>,
                     <Link to="/quote" className="nav-link" href="#"><FaHeart className="icon-menu"/>Favorite</Link>,
+                    <Link to="/users" className="nav-link" href="#"><FaUsers className="icon-menu"/>Users</Link>,
                     <Link onClick={this.logout} to="/" className="nav-link" href="#"><FaArrowLeft className="icon-menu"/>Logout</Link>,
                 ];
 
