@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import Search from "../components/Search";
 import {SongConsumer} from '../context'
 import * as firebase from 'firebase'
-import { slide as Menu } from 'react-burger-menu'
 
 
 class Home extends React.Component {
@@ -14,6 +13,7 @@ class Home extends React.Component {
         return(
             <>
                 <Banner/>
+
                 <Search className="search"/>
                 <div className="container main-cont">
                     <div className="row">

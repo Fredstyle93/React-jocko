@@ -1,5 +1,5 @@
 body {
-  font-family: 'Gabriela', serif;
+  font-family: 'Lato', serif !important;
 
   background-image: url("images/usa.png");
   background-repeat: no-repeat;
@@ -58,6 +58,17 @@ header::after {
   text-align: center;
 
 
+}
+
+.user-item{
+  box-shadow: -4px 10px 18px -13px rgba(0,0,0,0.75);
+  border-radius: 10px;
+  background-color: #373a47;
+  color:#fff;
+}
+
+.user-list {
+  margin-top: 5em;
 }
 
 .back-arrow {

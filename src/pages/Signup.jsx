@@ -10,26 +10,41 @@ class Signup extends React.Component{
         username: "",
         password: "",
         email: "",
-        message: ""
+        image: null,
+        url:"",
+        message: "",
+        level:1,
+        experience:0,
+        nextLevelExperience: 200
     };
 
     handleChange = (e, state) => {
         this.setState({[state]:e.target.value})
     };
 
+    handleUploadChange = e => {
+        if(e.target.files[0]){
+            const image = e.target.files[0];
+            this.setState(()=>({image}))
+
+        }
+    };
+
+    handleUpload = () => {
+
+    };
+
     signUp = e => {
-        console.log(this.state);
+
         e.preventDefault();
+
         firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
             .then((user)=>{
-                console.log(this.state.username)
-                console.log(user.user.uid)
-                firebase.database().ref('users/' + user.user.uid).set({email:this.state.email, password:this.state.password,username: this.state.username})
-
+                    firebase.database().ref('users/' + user.user.uid).set({email:this.state.email, password:this.state.password,username: this.state.username, level:this.state.level, experience:this.state.experience, nextLevelExperience: this.state.nextLevelExperience})
             })
             .catch(({message}) => {
                 this.setState({message:message})
-            })
+            });
         this.props.history.push('/');
     };
 
@@ -43,6 +58,8 @@ class Signup extends React.Component{
                         <input onChange={(e) => this.handleChange(e , "email")} type="text" id="login" className="fadeIn second" name="login" placeholder="login" />
                         <input onChange={(e) => this.handleChange(e , "password")} type="password" id="password" className="fadeIn third" name="login"
                                placeholder="password" />
+                        {/*  <div>Upload Your File </div>
+                        <input onChange={(e) => this.handleUploadChange(e)} type="file" className="fadeIn third" multiple="" />*/}
                             <input type="submit" className="fadeIn fourth" value="signup" />
 
                     </form>

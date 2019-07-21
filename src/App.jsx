@@ -11,14 +11,16 @@ import * as firebase from 'firebase'
 import {config} from "./config/config";
 import 'firebase/auth';
 import ForgotPassword from "./pages/ForgotPassword";
-import * as admin from 'firebase-admin';
 let refreshToken;
-admin.initializeApp({
+{
+    /*admin.initializeApp({
     credential: admin.credential.refreshToken(refreshToken),
     databaseURL: 'https://jocko-b1f23.firebaseio.com.firebaseio.com'
 });
 
-const adminvar = admin.initializeApp();
+const adminvar = admin.initializeApp();*/
+}
+
 
 
 const firebaseApp = firebase.initializeApp(config);

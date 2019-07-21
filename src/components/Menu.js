@@ -24,9 +24,7 @@ class Menu extends Component {
                 userInfo: Object.values(snap.val())
             })
         })
-
-
-    }
+    };
 
     componentDidMount() {
         this.getUserInfo();
@@ -42,13 +40,13 @@ class Menu extends Component {
                 ];
 
         return items;
-    }
+    };
 
     getMenu() {
         const Menu = BurgerMenu[this.state.currentMenu];
         return (
             <Menu id={this.state.currentMenu} pageWrapId={'page-wrap'} outerContainerId={'outer-container'} right={this.state.side === 'right'}>
-                <h4 className="userName"><FaUser className="icon-menu"/>{firebase.auth().currentUser !== null ? this.state.userInfo[2] : ""}</h4>
+                <h4 className="userName"><FaUser className="icon-menu"/>{firebase.auth().currentUser !== null ? this.state.userInfo[5] : ""}</h4>
                 {this.getItems()}
             </Menu>
         );

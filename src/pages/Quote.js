@@ -15,7 +15,6 @@ class Quote extends React.Component{
             } else {
                 resp = []
             }
-            console.log();
                 this.setState({
                     favoriteSong: resp
                 })
