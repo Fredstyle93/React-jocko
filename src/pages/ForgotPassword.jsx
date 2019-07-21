@@ -34,7 +34,7 @@ class ForgotPassword extends React.Component{
                 <h3>Entrez votre courriel</h3>
                     <form onSubmit={this.forgotPassword}>
                         <input onChange={(e) => this.handleChange(e , "email")} type="text" id="login" className="fadeIn second" name="login" placeholder="Courriel" />
-                        <input type="submit" className="fadeIn fourth" value="Reset password" />
+                        <input type="submit" className="fadeIn fourth login-btn" value="Reset password" />
 
                     </form>
 

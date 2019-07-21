@@ -5,15 +5,40 @@ import styled from 'styled-components'
 import Search from "../components/Search";
 import {SongConsumer} from '../context'
 import * as firebase from 'firebase'
+import Callout from '../components/Callout'
 
 
 class Home extends React.Component {
+
+    getUserInfo = () => {
+        const ref = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`);
+
+        ref.on('value', snap => {
+            this.setState({
+                userInfo: Object.values(snap.val())
+            })
+        })
+    };
+
+    componentDidMount() {
+        this.getUserInfo();
+    }
+
+    state = {
+        isVisible: "hidden",
+        userInfo: []
+    };
+
+    handleCallout = state => {
+        this.setState({isVisible:state})
+        setTimeout(() => {this.setState({isVisible:"hidden"})},3000)
+    };
 
     render(){
         return(
             <>
                 <Banner/>
-
+                <Callout userInfo={this.state.userInfo} isVisible={this.state.isVisible}/>
                 <Search className="search"/>
                 <div className="container main-cont">
                     <div className="row">
@@ -25,7 +50,7 @@ class Home extends React.Component {
                                             <>
                                             <div className="col-md-4">
                                                 <SoundComponent className="card">
-                                                    <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
+                                                    <Sounds handleCallout={this.handleCallout} img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
                                                 </SoundComponent>
                                             </div>
                                             </>

@@ -60,7 +60,7 @@ class Signup extends React.Component{
                                placeholder="password" />
                         {/*  <div>Upload Your File </div>
                         <input onChange={(e) => this.handleUploadChange(e)} type="file" className="fadeIn third" multiple="" />*/}
-                            <input type="submit" className="fadeIn fourth" value="signup" />
+                            <input type="submit" className="fadeIn fourth login-btn" value="signup" />
 
                     </form>
                     {this.state.message}

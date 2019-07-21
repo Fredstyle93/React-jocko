@@ -28,6 +28,8 @@ class Menu extends Component {
 
     componentDidMount() {
         this.getUserInfo();
+
+        const btn = document.querySelector('button').style.color = "#fff";
     }
 
     getItems = () => {
@@ -45,8 +47,8 @@ class Menu extends Component {
     getMenu() {
         const Menu = BurgerMenu[this.state.currentMenu];
         return (
-            <Menu id={this.state.currentMenu} pageWrapId={'page-wrap'} outerContainerId={'outer-container'} right={this.state.side === 'right'}>
-                <h4 className="userName"><FaUser className="icon-menu"/>{firebase.auth().currentUser !== null ? this.state.userInfo[5] : ""}</h4>
+            <Menu burgerButtonClassName={ "btn-menu" } id={this.state.currentMenu} pageWrapId={'page-wrap'} outerContainerId={'outer-container'} right={this.state.side === 'right'}>
+                <h4 className="userName"><FaUser className="icon-menu"/>{firebase.auth().currentUser !== null ? this.state.userInfo[5] : ""} <span className="level-show">{this.state.userInfo[2]}</span></h4>
                 {this.getItems()}
             </Menu>
         );

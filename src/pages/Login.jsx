@@ -42,9 +42,9 @@ class Login extends React.Component {
                         <input onChange={(e) => this.handleChange(e , "email")} type="text" id="login" className="fadeIn second" name="login" placeholder="login" />
                         <input onChange={(e) => this.handleChange(e , "password")} type="password" id="password" className="fadeIn third" name="login"
                                placeholder="password" />
-                        <input onClick={this.login} type="submit" className="fadeIn fourth" value="Log In" />
+                        <input onClick={this.login} type="submit" className="fadeIn fourth login-btn" value="Log In" />
                         <Link to="/signup">
-                            <input type="submit" className="fadeIn fourth" value="signup" />
+                            <input type="submit" className="fadeIn fourth login-btn" value="signup" />
                         </Link>
                     </form>
                     {this.state.message}

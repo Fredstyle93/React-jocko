@@ -33,8 +33,9 @@ class Users extends React.Component{
 
         return (
             <>
-
+                <h2 className="title">My quote</h2>
              <UsersWrapper className="container">
+
                  <div className="row user-list">
                      {this.state.users.map(user=> {
                          const width = {
@@ -45,6 +46,7 @@ class Users extends React.Component{
                                  <h5 className="user-title"><FaUser className="icon-menu"/>{user.username}</h5>
                                  <p><span>Level: </span>{user.level}</p>
                                  <p><span>Experience: </span>{user.experience} / {user.nextLevelExperience}</p>
+
                                  <div className="progress">
                                      <div className="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar"
                                           style={width} aria-valuenow="75" aria-valuemin="0"

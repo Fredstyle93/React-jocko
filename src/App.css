@@ -67,8 +67,36 @@ header::after {
   color:#fff;
 }
 
+.user-item:last-child {
+  margin-bottom: 30em;
+}
+
+.user-title {
+  width:100%;
+
+}
+
 .user-list {
   padding-top: 5em;
+}
+
+.login-btn {
+  background-color: #C14242 !important;
+}
+
+.level-show {
+  position: absolute !important;
+  right: 0.9em;
+  top: -1em;
+  font-family: 'Lato', serif !important;
+  font-size: 0.6em;
+  background-color: #C14242;
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.1;
 }
 
 .back-arrow {
@@ -106,9 +134,31 @@ h3 {
   margin-top: 5em;
 }
 
-h2 {
+.title {
   text-align: center;
-  margin-top: 2em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  background-color: #272A37;
+  color: #fff;
+}
+
+.custom-alert {
+  transition: all ease-in .4s;
+  position: fixed;
+  bottom: 30px;
+  z-index: 999;
+  left: 20%;
+  right: 20%;
+  box-shadow: -2px 6px 21px -8px rgba(0,0,0,0.75);
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(120px);
+}
+.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .css-live-wrap {
@@ -139,7 +189,7 @@ h2 {
 }
 
 h1,h2,h3,h4,h5 {
-  font-family: 'Black Han Sans', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .bm-burger-button {
@@ -191,7 +241,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   color: white;
 }
 
-.bm-burger-button button {
+.btn-menu {
   color: white !important;
 }
 
@@ -209,6 +259,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background-color: #C14242;
 }
 
+.level-icon {
+  position:relative;
+  bottom: .2em;
+}
+
 .icon-menu {
   margin-right: 1em;
   position: relative;
@@ -218,6 +273,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-item:hover {
   color: #C14242;
 }
+
+.userName:hover {
+  color:#fff !important;
+}
+
+
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
@@ -239,3 +300,4 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+

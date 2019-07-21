@@ -94,6 +94,7 @@ class Sounds extends React.Component {
             console.log(this.state);
         });
 
+
         let formatedExperience = Math.round(this.state.experience);
         let formatedLevel = this.state.currentLevel;
         let formatedNextLevelExp = this.state.nextLevelExperience;
@@ -103,10 +104,9 @@ class Sounds extends React.Component {
             formatedLevel += 1;
             formatedExperience = formatedExperience - formatedNextLevelExp;
             formatedNextLevelExp += 50;
+            this.props.handleCallout('visible');
 
         }
-
-
         firebase.database().ref().child(`/users/${firebase.auth().currentUser.uid}`).update({experience: formatedExperience, nextLevelExperience: formatedNextLevelExp, level: formatedLevel});
     };
 

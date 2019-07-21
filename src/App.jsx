@@ -11,6 +11,7 @@ import * as firebase from 'firebase'
 import {config} from "./config/config";
 import 'firebase/auth';
 import ForgotPassword from "./pages/ForgotPassword";
+import Banner from "./components/Banner";
 let refreshToken;
 {
     /*admin.initializeApp({
@@ -45,6 +46,8 @@ class App extends React.Component {
         }
     })
     };
+
+
 
     componentDidMount() {
         this.authListener();

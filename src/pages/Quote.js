@@ -1,8 +1,8 @@
 import React from 'react';
-import {SongConsumer} from "../context";
 import Sounds from "../components/Sound";
 import styled from "styled-components";
 import * as firebase from 'firebase'
+import Callout from "../components/Callout";
 
 class Quote extends React.Component{
 
@@ -21,19 +21,39 @@ class Quote extends React.Component{
         });
     };
 
+    getUserInfo = () => {
+        const ref = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`);
+        ref.on('value', snap => {
+            this.setState({
+                userInfo: Object.values(snap.val())
+            })
+        })
+    };
+
+
     componentDidMount() {
         this.syncState();
+        this.getUserInfo();
     }
 
     state = {
-        favoriteSong:[]
+        favoriteSong:[],
+        isVisible: "hidden",
+        userInfo: []
     }
+
+
+    handleCallout = state => {
+        this.setState({isVisible:state})
+        setTimeout(() => {this.setState({isVisible:"hidden"})},3000)
+    };
 
     render(){
 
         return (
             <>
-                <h2>My quote</h2>
+                <h2 className="title">My quote</h2>
+                <Callout userInfo={this.state.userInfo} isVisible={this.state.isVisible}/>
                 <div className="container">
                     <div className="row">
                         {
@@ -42,7 +62,7 @@ class Quote extends React.Component{
                                     return(
                                         <div className="col-md-4">
                                             <SoundComponent className="card">
-                                                <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
+                                                <Sounds handleCallout={this.handleCallout} img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
                                             </SoundComponent>
                                         </div>
                                     )
