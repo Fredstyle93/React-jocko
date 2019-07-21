@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import Search from "../components/Search";
 import {SongConsumer} from '../context'
 import * as firebase from 'firebase'
+import { slide as Menu } from 'react-burger-menu'
 
 
 class Home extends React.Component {
@@ -21,11 +22,13 @@ class Home extends React.Component {
                                 return(
                                     songs.map(song => {
                                         return(
+                                            <>
                                             <div className="col-md-4">
                                                 <SoundComponent className="card">
                                                     <Sounds img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
                                                 </SoundComponent>
                                             </div>
+                                            </>
                                         )
                                     })
                                 )

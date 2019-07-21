@@ -5,7 +5,7 @@ import Quote from './pages/Quote';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import './App.css';
-import Nav from './components/Nav';
+import Menu from './components/Menu';
 import * as firebase from 'firebase'
 import {config} from "./config/config";
 import withFirebaseAuth from 'react-with-firebase-auth'
@@ -46,7 +46,7 @@ class App extends React.Component {
 
                 {this.state.user !== null ? (
                     <>
-                    <Nav />
+                    <Menu />
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/quote" component={Quote} />
