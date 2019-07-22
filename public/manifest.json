@@ -3,7 +3,7 @@
   "name": "React PWA Jocko experience",
   "icons": [
     {
-      "src": "/images/icons/app-icon-144x144.png",
+      "src": "/images/icons/jocko-icon-144x144.png",
       "type": "image/png",
       "sizes": "144x144"
     }
