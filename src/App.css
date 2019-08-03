@@ -116,7 +116,7 @@ header::after {
 .card-body {
   position: relative;
   box-shadow: 0px -6px 8px -6px rgba(0,0,0,0.2);
-  background-color: #ed2224;
+  background-color: #C14242;
 /*  bottom: 1.5em;*/
   padding: .5em !important;
 }
@@ -264,6 +264,20 @@ Note: Beware of modifying this element as it can break the animations - you shou
   bottom: .2em;
 }
 
+.favorite-quote {
+  min-height:40em;
+  background-color:#373a47;
+}
+
+a {
+  color:#fff;
+}
+
+a:hover {
+  color: floralwhite;
+}
+
+
 .icon-menu {
   margin-right: 1em;
   position: relative;
@@ -285,6 +299,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
   fill: #373a47;
 }
 
+.progress-bar {
+  background-color: #373a47 !important;
+}
+
 /* Wrapper for item list */
 .bm-item-list {
   color: #b8b7ad;
@@ -299,5 +317,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+.profile {
+
+
 }
 

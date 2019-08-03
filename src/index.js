@@ -20,6 +20,7 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 //serviceWorker.register();
+/*
 if (!window.Promise) {
     window.Promise = Promise;
 }
@@ -33,3 +34,4 @@ if ('serviceWorker' in navigator) {
             console.log(err);
         });
 }
+*/
