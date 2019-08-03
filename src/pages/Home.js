@@ -12,16 +12,20 @@ class Home extends React.Component {
 
     getUserInfo = () => {
         const ref = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`);
-
         ref.on('value', snap => {
-            this.setState({
-                userInfo: Object.values(snap.val())
-            })
+            setTimeout(()=>{
+                this.setState({
+                    userInfo: Object.values(snap.val())
+                })
+            },300)
+
         })
+
     };
 
     componentDidMount() {
         this.getUserInfo();
+
     }
 
     state = {
@@ -50,7 +54,7 @@ class Home extends React.Component {
                                             <>
                                             <div className="col-md-4">
                                                 <SoundComponent className="card">
-                                                    <Sounds handleCallout={this.handleCallout} img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
+                                                    <Sounds userInfo={this.state.userInfo} handleCallout={this.handleCallout} img={song.imageUrl} index={song.id} title={song.title} soundFile={song.url}/>
                                                 </SoundComponent>
                                             </div>
                                             </>

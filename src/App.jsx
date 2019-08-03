@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Quote from './pages/Quote';
 import Login from './pages/Login';
@@ -11,7 +11,7 @@ import * as firebase from 'firebase'
 import {config} from "./config/config";
 import 'firebase/auth';
 import ForgotPassword from "./pages/ForgotPassword";
-import Banner from "./components/Banner";
+import UserDetail from './pages/UserDetail';
 let refreshToken;
 {
     /*admin.initializeApp({
@@ -35,9 +35,11 @@ class App extends React.Component {
     authListener = () => {
 
     firebaseApp.auth().onAuthStateChanged(user => {
+        this.getUsers();
         if(user) {
             this.setState({
-                user: ""
+                user: "",
+                users: []
             })
         } else {
             this.setState({
@@ -45,6 +47,21 @@ class App extends React.Component {
             })
         }
     })
+    };
+
+    getUsers = nextPageToken => {
+
+        const ref = firebase.database().ref(`/users`);
+
+        ref.on('value', snap => {
+            let resp = [];
+            if(snap.val() !== null) {
+                resp = Object.values(snap.val())
+            } else {
+                resp = []
+            }
+            this.setState({users : resp || []})
+        })
     };
 
 
@@ -56,13 +73,14 @@ class App extends React.Component {
     render(){
         return(
             <>
-
+                {console.log(this.props)}
                 {this.state.user !== null ? (
                     <>
                     <Menu />
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route exact path="/users" component={Users} />
+                        <Route exact path="/users" users={this.state.users} render={() => <Users props={this.props} users={this.state.users}/>} />
+                        <Route exact path="/users/:id" users={this.state.users} component={UserDetail} />
                         <Route exact path="/quote" component={Quote} />
                         <Redirect from="/login" to="/"/>
                         <Route component={Error} />
@@ -87,4 +105,4 @@ class App extends React.Component {
 
 
 
-export default App;
+export default withRouter(App);

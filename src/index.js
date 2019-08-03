@@ -23,7 +23,8 @@ ReactDOM.render(
 /*
 if (!window.Promise) {
     window.Promise = Promise;
-}
+}*/
+/*
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
         .register(`${process.env.PUBLIC_URL}/sw.js`,{ scope: '/'})
@@ -34,4 +35,5 @@ if ('serviceWorker' in navigator) {
             console.log(err);
         });
 }
+
 */
