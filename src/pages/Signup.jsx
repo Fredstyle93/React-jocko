@@ -53,15 +53,12 @@ class Signup extends React.Component{
 
             firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
                 .then((user)=>{
-                    firebase.database().ref('users/' + user.user.uid).set({email:this.state.email, password:this.state.password,username: this.state.username, level:this.state.level, experience:this.state.experience, nextLevelExperience: this.state.nextLevelExperience, uid:user.user.uid})
+                    firebase.database().ref('users/' + user.user.uid).set({email:this.state.email, password:this.state.password,username: this.state.username, level:this.state.level, experience:this.state.experience, nextLevelExperience: this.state.nextLevelExperience, uid:user.user.uid, avatar:""})
+                    this.props.history.push('/');
                 })
                 .catch(({message}) => {
                     this.setState({message:message})
                 });
-            if(this.state.username.trim() !== "" && this.state.email.trim() !== '' && this.state.password.trim() !== '') {
-                this.props.history.push('/');
-            }
-
     };
 
     render(){

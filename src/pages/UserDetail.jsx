@@ -4,7 +4,7 @@ import Experience from "../components/Experience";
 import styled from 'styled-components'
 import profile from '../images/profile.png'
 import Sounds from "../components/Sound";
-import {FaCog} from "react-icons/fa";
+import {FaCog, FaUpload} from "react-icons/fa";
 import Callout from "../components/Callout";
 
 
@@ -80,7 +80,9 @@ class UserDetail extends React.Component {
         userInfo:[],
         userFavorite: [],
         isVisible: "hidden",
-        isEditing:false
+        isEditing:false,
+        image: null,
+        userImage:"",
     };
 
     handleEditing = () => {
@@ -89,7 +91,31 @@ class UserDetail extends React.Component {
         }else {
             this.setState({isEditing:false})
         }
-    }
+    };
+
+    handleUploadChange = e => {
+        if(e.target.files[0]){
+            const image = e.target.files[0];
+            this.setState(()=>({image, isEditing:true}))
+
+        }
+    };
+
+    handleUpload = async () => {
+        //console.log(this.state.image);
+        const blob = new Blob([this.state.image.name], { type: this.state.image.type });
+        const storageRef = firebase.storage().ref();
+        const image = storageRef.child(`images/${this.state.userInfo[6]}/${this.state.image.name}`).put(this.state.image)
+            .then(()=>{
+                storageRef.child(`images/${this.state.userInfo[6]}/${this.state.image.name}`).getDownloadURL().then(url => {
+                    this.setState({userImage: url});
+                    this.setState({isEditing:false});
+                    const userRef = firebase.database().ref('/users').child(this.state.userInfo[6]).update({avatar:url}).then(() => {
+                       this.getUserInfo();
+                    })
+                })
+            });
+};
 
     handleCallout = state => {
         this.setState({isVisible:state})
@@ -105,9 +131,9 @@ class UserDetail extends React.Component {
                     <div className="user">
                          <span className="img-container">
                         <div className="img">
-                                <img src={profile} alt=""/>
-                                {this.state.userInfo[6] !== undefined ? (
-                                        this.state.userInfo[6] === this.state.user.username ?<label className="change-icon" for="input-file"> <FaCog/><input id="input-file" type="file"/></label>: '')
+                                <img src={this.state.user.avatar !== "" ? this.state.user.avatar: profile} alt=""/>
+                                {this.state.userInfo[7] !== undefined ? (
+                                        this.state.userInfo[7] === this.state.user.username ?<label className="change-icon" for="input-file"> <FaCog/><input onChange={(e) => this.handleUploadChange(e)} id="input-file" type="file"/></label>: '')
                                     : ""}
                         </div>
                          </span>
@@ -115,7 +141,7 @@ class UserDetail extends React.Component {
                             {this.state.user.username} </h4>
                             <p>{this.state.user.email}</p>
                     </div>
-
+                    {this.state.isEditing ? <button className="button-send" onClick={this.handleUpload}>send</button> : ''}
                 </div>
 
                 <div className="mid-profile">
@@ -152,11 +178,7 @@ class UserDetail extends React.Component {
                         })}
                     </div>
                 </div>
-
             </UserProfile>
-
-
-
                 </>
         )
     }

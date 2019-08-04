@@ -185,6 +185,7 @@ h3 {
 }
 
 .change-icon {
+  cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
@@ -281,6 +282,25 @@ Note: Beware of modifying this element as it can break the animations - you shou
   min-height:40em;
   background-color:#373a47;
   box-shadow: 0px -5px 25px -2px rgba(0,0,0,0.53);
+}
+
+.button-send {
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  color: #fff;
+  padding: .1em 1em;
+  border: 1px solid white;
+}
+button {
+  transition: all ease-in .2s;
+}
+
+.button-send:hover {
+  background-color: #fff;
+  color: #000;
 }
 
 a {
