@@ -1,3 +1,5 @@
+/* Coucou, TEST */
+
 body {
   font-family: 'Lato', serif !important;
 
@@ -8,7 +10,6 @@ body {
   background-position-x: -184px;
 
 }
-
 
 .hero {
   background-image: url("images/index.jpg");
@@ -37,12 +38,10 @@ header::after {
   display: none;
 }
 
-
 .card-img-top {
   display: inline-block;
   box-shadow: -2px 6px 21px -8px rgba(0,0,0,0.75);
 }
-
 
 .heart {
   position:absolute;
@@ -56,8 +55,6 @@ header::after {
   padding-right: 5em;
   color: white;
   text-align: center;
-
-
 }
 
 .user-item{
@@ -73,7 +70,6 @@ header::after {
 
 .user-title {
   width:100%;
-
 }
 
 .user-list {
