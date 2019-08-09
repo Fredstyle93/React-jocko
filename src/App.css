@@ -82,7 +82,7 @@ header::after {
 
 .level-show {
   position: absolute !important;
-  right: 0.9em;
+  right: 0;
   top: -1em;
   font-family: 'Lato', serif !important;
   font-size: 0.6em;
@@ -150,7 +150,7 @@ h3 {
 
 .hidden {
   opacity: 0;
-  transform: translateY(120px);
+  transform: translateY(200px);
 }
 .visible {
   opacity: 1;

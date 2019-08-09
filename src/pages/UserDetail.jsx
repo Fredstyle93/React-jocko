@@ -217,9 +217,12 @@ padding: 5em;
     color: #fff;
     
     .img {
+    height:10em;
+    width:10em;
         text-align:center;
         img {
-             width: 10em;
+             width: 100%;
+             height: 100%;
             border-radius: 50%;
             }
         }
