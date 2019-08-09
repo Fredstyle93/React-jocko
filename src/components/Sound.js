@@ -16,6 +16,7 @@ class Sounds extends React.Component {
         state = {
             status : Sound.status.STOPPED,
             image: [],
+            userInfo:[],
             buttonText: <FaPlay/>,
             initialsong: songsData,
             duration: Sound.status.duration,
@@ -29,6 +30,8 @@ class Sounds extends React.Component {
 
         componentDidMount() {
             this.syncState();
+
+            console.log(this.props)
         }
 
     syncState = () => {
@@ -46,6 +49,7 @@ class Sounds extends React.Component {
                     favoriteSong: resp || []
                 })
             });
+
     }
 
     toggleStatus = () => {
@@ -68,7 +72,7 @@ class Sounds extends React.Component {
         const newSong = this.state.initialsong.filter(song => {
             return song.id === id;
         });
-        firebase.database().ref(`favoriteSong/${firebase.auth().currentUser.uid}`).push(newSong[0]);
+        firebase.database().ref(`favoriteSong/${firebase.auth().currentUser.uid}`).push({...newSong[0],userId:this.props.userInfo[5]});
 
 
         this.syncState();

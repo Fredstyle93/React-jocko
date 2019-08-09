@@ -1,3 +1,5 @@
+/* Coucou, TEST */
+
 body {
   font-family: 'Lato', serif !important;
 
@@ -8,7 +10,6 @@ body {
   background-position-x: -184px;
 
 }
-
 
 .hero {
   background-image: url("images/index.jpg");
@@ -37,12 +38,10 @@ header::after {
   display: none;
 }
 
-
 .card-img-top {
   display: inline-block;
   box-shadow: -2px 6px 21px -8px rgba(0,0,0,0.75);
 }
-
 
 .heart {
   position:absolute;
@@ -56,8 +55,6 @@ header::after {
   padding-right: 5em;
   color: white;
   text-align: center;
-
-
 }
 
 .user-item{
@@ -73,7 +70,6 @@ header::after {
 
 .user-title {
   width:100%;
-
 }
 
 .user-list {
@@ -86,7 +82,7 @@ header::after {
 
 .level-show {
   position: absolute !important;
-  right: 0.9em;
+  right: 0;
   top: -1em;
   font-family: 'Lato', serif !important;
   font-size: 0.6em;
@@ -116,7 +112,7 @@ header::after {
 .card-body {
   position: relative;
   box-shadow: 0px -6px 8px -6px rgba(0,0,0,0.2);
-  background-color: #ed2224;
+  background-color: #C14242;
 /*  bottom: 1.5em;*/
   padding: .5em !important;
 }
@@ -154,7 +150,7 @@ h3 {
 
 .hidden {
   opacity: 0;
-  transform: translateY(120px);
+  transform: translateY(200px);
 }
 .visible {
   opacity: 1;
@@ -177,8 +173,22 @@ h3 {
   .form-control {
     width: 25% !important;
   }
+}
 
+.img-container {
+  position: relative;
+  display: inline-block;
+}
 
+.change-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+[type="file"] {
+  display: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -264,6 +274,40 @@ Note: Beware of modifying this element as it can break the animations - you shou
   bottom: .2em;
 }
 
+.favorite-quote {
+  min-height:40em;
+  background-color:#373a47;
+  box-shadow: 0px -5px 25px -2px rgba(0,0,0,0.53);
+}
+
+.button-send {
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  color: #fff;
+  padding: .1em 1em;
+  border: 1px solid white;
+}
+button {
+  transition: all ease-in .2s;
+}
+
+.button-send:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+a {
+  color:#fff;
+}
+
+a:hover {
+  color: floralwhite;
+}
+
+
 .icon-menu {
   margin-right: 1em;
   position: relative;
@@ -285,6 +329,38 @@ Note: Beware of modifying this element as it can break the animations - you shou
   fill: #373a47;
 }
 
+.progress-bar {
+  background-color: #373a47 !important;
+}
+
+.styled-title {
+  text-align: center;
+  color: white;
+  margin: 2.5em 0 0;
+}
+
+.title-container {
+  position: relative;
+  display: inline-block;
+  margin:0 auto;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%);
+}
+
+.styled-title:after {
+  content:"";
+  display: block;
+  height: 1px;
+  position: absolute;
+  bottom: -.5em;
+  background-color: #a90000;
+left: -20%;
+right: 20%;
+  transform: translate(50%);
+  width: 70%;
+}
+
 /* Wrapper for item list */
 .bm-item-list {
   color: #b8b7ad;
@@ -299,5 +375,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+.profile {
+
+
 }
 

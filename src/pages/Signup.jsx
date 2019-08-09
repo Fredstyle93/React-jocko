@@ -10,42 +10,55 @@ class Signup extends React.Component{
         username: "",
         password: "",
         email: "",
+        users:[],
         image: null,
         url:"",
         message: "",
         level:1,
+        userNameUsed:false,
         experience:0,
         nextLevelExperience: 200
     };
 
     handleChange = (e, state) => {
         this.setState({[state]:e.target.value})
+        this.setState({userNameUsed:false})
     };
 
-    handleUploadChange = e => {
-        if(e.target.files[0]){
-            const image = e.target.files[0];
-            this.setState(()=>({image}))
+    componentDidMount() {
+        const ref = firebase.database().ref('/users');
 
-        }
-    };
-
-    handleUpload = () => {
-
-    };
+        ref.on('value', snap => {
+            let resp = [];
+            if(snap.val() !== null) {
+                resp = Object.values(snap.val())
+            } else {
+                resp = []
+            }
+            this.setState({users : resp || []})
+        })
+    }
 
     signUp = e => {
-
         e.preventDefault();
+        const username = this.state.users.filter(user=>{
+            return user.username === this.state.username;
+        })
+        if(username.length === 0) {
+            this.setState({userNameUsed:false})
+        }else {
+            this.setState({userNameUsed:true, message: "this username is already used"});
+            return;
+        }
 
-        firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
-            .then((user)=>{
-                    firebase.database().ref('users/' + user.user.uid).set({email:this.state.email, password:this.state.password,username: this.state.username, level:this.state.level, experience:this.state.experience, nextLevelExperience: this.state.nextLevelExperience})
-            })
-            .catch(({message}) => {
-                this.setState({message:message})
-            });
-        this.props.history.push('/');
+            firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
+                .then((user)=>{
+                    firebase.database().ref('users/' + user.user.uid).set({email:this.state.email, password:this.state.password,username: this.state.username, level:this.state.level, experience:this.state.experience, nextLevelExperience: this.state.nextLevelExperience, uid:user.user.uid, avatar:""})
+                    this.props.history.push('/');
+                })
+                .catch(({message}) => {
+                    this.setState({message:message})
+                });
     };
 
     render(){
@@ -60,7 +73,7 @@ class Signup extends React.Component{
                                placeholder="password" />
                         {/*  <div>Upload Your File </div>
                         <input onChange={(e) => this.handleUploadChange(e)} type="file" className="fadeIn third" multiple="" />*/}
-                            <input type="submit" className="fadeIn fourth login-btn" value="signup" />
+                            <input type="submit" disabled={this.state.userNameUsed} className="fadeIn fourth login-btn" value="signup" />
 
                     </form>
                     {this.state.message}

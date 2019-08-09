@@ -2,9 +2,21 @@ import React from 'react';
 import styled from "styled-components";
 import * as firebase from 'firebase'
 import {FaUser} from "react-icons/fa";
+import {Link} from "react-router-dom";
+import Experience from '../components/Experience'
+
 
 
 class Users extends React.Component{
+
+
+    state = {
+        users : []
+    }
+
+    componentDidMount() {
+        this.getUsers();
+    }
 
     getUsers = nextPageToken => {
 
@@ -21,14 +33,6 @@ class Users extends React.Component{
         })
     };
 
-    componentDidMount() {
-        this.getUsers();
-    }
-
-    state = {
-        users : []
-    }
-
     render(){
 
         return (
@@ -38,20 +42,12 @@ class Users extends React.Component{
 
                  <div className="row user-list">
                      {this.state.users.map(user=> {
-                         const width = {
-                             width: (user.experience * 100 ) / user.nextLevelExperience + "%"
-                         };
                          return(
                              <div className="col-md-12 user-item">
-                                 <h5 className="user-title"><FaUser className="icon-menu"/>{user.username}</h5>
+                                 <Link to={"/users/"+user.username}><h5 className="user-title"><FaUser className="icon-menu"/>{user.username}</h5></Link>
                                  <p><span>Level: </span>{user.level}</p>
                                  <p><span>Experience: </span>{user.experience} / {user.nextLevelExperience}</p>
-
-                                 <div className="progress">
-                                     <div className="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar"
-                                          style={width} aria-valuenow="75" aria-valuemin="0"
-                                          aria-valuemax="100"></div>
-                                 </div>
+                                <Experience user={user}/>
                              </div>
                          )
                      })}
