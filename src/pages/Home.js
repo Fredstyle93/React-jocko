@@ -6,6 +6,7 @@ import Search from "../components/Search";
 import {SongConsumer} from '../context'
 import * as firebase from 'firebase'
 import Callout from '../components/Callout'
+import Quicksound from "../components/Quicksound";
 
 
 class Home extends React.Component {
@@ -65,6 +66,8 @@ class Home extends React.Component {
                         </SongConsumer>
                     </div>
                 </div>
+
+                <Quicksound/>
             </>
         )
     }

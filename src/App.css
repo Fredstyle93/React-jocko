@@ -101,6 +101,10 @@ header::after {
   top: 20px;
 }
 
+.quicksound-section {
+  margin-top: 5em;
+}
+
 .navbar {
   background-color:#0d0707 !important;
 }

@@ -30,8 +30,6 @@ class Sounds extends React.Component {
 
         componentDidMount() {
             this.syncState();
-
-            console.log(this.props)
         }
 
     syncState = () => {

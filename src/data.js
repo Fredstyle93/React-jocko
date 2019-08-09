@@ -1,4 +1,6 @@
 import Sound from 'react-sound';
+import React from 'react';
+import {FaBeer, FaTag} from "react-icons/fa";
 import file1 from './sounds/Jocko_1.mp3'
 import file2 from './sounds/Jocko_2.mp3'
 import file3 from './sounds/Jocko_3.mp3'
@@ -16,6 +18,20 @@ import img5 from './images/jocko_5.jpg'
 import img6 from './images/jocko_6.jpg'
 import img7 from './images/jocko_7.jpg'
 import img8 from './images/jocko_8.jpg'
+
+import good from './sounds/good.mp3';
+import quick1 from './sounds/quick1.mp3';
+
+export const quickSound = [
+    {
+        url: good,
+        icon: <FaBeer/>
+    },
+    {
+        url: quick1,
+        icon: <FaTag/>
+    },
+];
 
 export const songsData = [
     {
