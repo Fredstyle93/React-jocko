@@ -8,6 +8,9 @@ import * as firebase from 'firebase'
 import Callout from '../components/Callout'
 import Quicksound from "../components/Quicksound";
 
+import Draggable from '../components/Draggable'
+import Droppable from '../components/Droppable'
+
 
 class Home extends React.Component {
 
@@ -66,13 +69,41 @@ class Home extends React.Component {
                         </SongConsumer>
                     </div>
                 </div>
-
                 <Quicksound/>
+
+                <h4>DROPPABLE</h4>
+                <DropWrapper>
+                    <Droppable id="1" style={DroppableStyle}>
+                        <Draggable id="item1"><span>item 1</span></Draggable>
+                    </Droppable>
+
+                    <Droppable id="2" style={DroppableStyle}>
+
+                    </Droppable>
+                </DropWrapper>
+
             </>
         )
     }
 
 };
+
+const DropWrapper = styled.div`
+padding:2em;
+display:flex;
+justify-content:center;
+`
+const Item = styled.div`
+padding:2em;
+color:#fff;
+background-color:#000;
+`
+const DroppableStyle = {
+    backgroundColor:'#555',
+    width:'250px',
+    height: '400px',
+    margin: '32px'
+}
 
 const SoundComponent = styled.div`
 background-color:#fff;
