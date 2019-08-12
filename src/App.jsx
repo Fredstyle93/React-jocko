@@ -12,16 +12,6 @@ import {config} from "./config/config";
 import 'firebase/auth';
 import ForgotPassword from "./pages/ForgotPassword";
 import UserDetail from './pages/UserDetail';
-let refreshToken;
-{
-    /*admin.initializeApp({
-    credential: admin.credential.refreshToken(refreshToken),
-    databaseURL: 'https://jocko-b1f23.firebaseio.com.firebaseio.com'
-});
-
-const adminvar = admin.initializeApp();*/
-}
-
 
 
 const firebaseApp = firebase.initializeApp(config);
@@ -96,8 +86,6 @@ class App extends React.Component {
 
                 )}
             </>
-
-
         )
     }
 

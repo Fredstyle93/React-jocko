@@ -25,11 +25,15 @@ import quick1 from './sounds/quick1.mp3';
 export const quickSound = [
     {
         url: good,
-        icon: <FaBeer/>
+        icon: 'FaBeer',
+        id: 0,
+        isSelected:false,
     },
     {
         url: quick1,
-        icon: <FaTag/>
+        icon: 'FaTag',
+        id: 1,
+        isSelected:false,
     },
 ];
 

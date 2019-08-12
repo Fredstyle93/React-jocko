@@ -80,6 +80,36 @@ header::after {
   background-color: #C14242 !important;
 }
 
+.inline-button {
+  display: inline-block;
+}
+
+[draggable="true"] {
+  display: inline-block;
+  margin: .5em;
+}
+[draggable="true"]:focus {
+  background-color: transparent;
+  outline: 0 none transparent;
+  -webkit-tap-highlight-color: unset;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+[draggable="true"]:active {
+  background-color: transparent;
+  outline: 0 none transparent;
+  -webkit-tap-highlight-color: unset;
+  user-drag: none;
+
+}
+
+#block-2 {
+  min-height: 100%;
+  min-width: 100%;
+}
+
+
 .level-show {
   position: absolute !important;
   right: 0;
@@ -95,6 +125,31 @@ header::after {
   line-height: 1.1;
 }
 
+.showMenu {
+  height: 200px !important;
+  transition: all ease-in .3s;
+}
+
+
+.sc-bxivhb > div:hover {
+  height: 200px !important;
+}
+
+button {
+  user-select: none;
+}
+
+
+button:focus {
+  -webkit-tap-highlight-color: #c14242;
+  user-select: none;
+
+
+}
+button:active {
+  user-select: none;
+}
+
 .back-arrow {
   position: absolute;
   left: 20px;
@@ -103,6 +158,7 @@ header::after {
 
 .quicksound-section {
   margin-top: 5em;
+
 }
 
 .navbar {

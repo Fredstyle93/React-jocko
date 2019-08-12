@@ -1,4 +1,5 @@
 import React from 'react';
+import * as firebase from 'firebase'
 
 export default class Droppable extends React.Component {
 
@@ -6,19 +7,36 @@ export default class Droppable extends React.Component {
             e.preventDefault();
 
             const data = e.dataTransfer.getData('transfer');
-            console.log(e.currentTarget);
             e.currentTarget.appendChild(document.getElementById(data));
+            const fireRef = firebase.database().ref(`QuickSound/${firebase.auth().currentUser.uid}`);
+            const newSong = this.props.song.filter(oneSong => {
+                console.log(oneSong.id)
+                return oneSong.id == data;
+            });
+            if(e.currentTarget.id === "block-1"){
+                fireRef.once('child_added',function(snapshot) {
+                    snapshot.ref.child(data).child('isSelected').set(true)
+                })
+            } else if(e.currentTarget.id === "block-2") {
+                fireRef.once('child_added',function(snapshot) {
+                    snapshot.ref.child(data).child('isSelected').set(false)
+                })
+            }
+
         };
+
+
 
         allowDrop = e => {
             e.preventDefault();
         }
 
+
     render() {
         return(
-            <div id={this.props.id} onDrop={(e) => this.drop(e)} onDragOver={this.allowDrop} style={this.props.style}>
-                {this.props.children}
-            </div>
+                <div className={this.props.showMenu ? "showMenu" : ""} style={this.props.style} id={this.props.id} onDrop={(e) => this.drop(e)} onDragOver={this.allowDrop}>
+                    {this.props.children}
+                </div>
         )
     }
 }
