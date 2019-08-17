@@ -1,11 +1,17 @@
 import React from 'react';
 import Sound from 'react-sound';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import styled from 'styled-components'
+import {faCheckSquare, faCoffee} from "@fortawesome/free-solid-svg-icons";
 
 class QuicksoundButton extends React.Component{
 
     playSound = () => {
-        this.setState({status: Sound.status.PLAYING})
+            this.setState({status: Sound.status.PLAYING})
+    }
+
+    stop = () => {
+        this.setState({status:Sound.status.STOPPED})
     }
 
     state = {
@@ -15,8 +21,8 @@ class QuicksoundButton extends React.Component{
     render() {
         return(
             <>
-            <ButtonWrapper onClick={this.playSound}>{this.props.icon}</ButtonWrapper>
-            <Sound playStatus={this.state.status} onClick url={this.props.url} />
+            <ButtonWrapper disabled={this.props.isDisabled} onClick={this.playSound}> <FontAwesomeIcon icon={this.props.icon} /> </ButtonWrapper>
+            <Sound onFinishedPlaying={this.stop} playStatus={this.state.status} onStop={this.stop} url={this.props.url} />
             </>
         )
     }

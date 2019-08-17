@@ -27,7 +27,7 @@ class Home extends React.Component {
 
     importData = () => {
 
-        const dbRef = firebase.database().ref(`QuickSound/${firebase.auth().currentUser.uid}`);
+        const dbRef = firebase.database().ref(`QuickSoundList/${firebase.auth().currentUser.uid}`);
         dbRef.once('value', function(snapshot) {
             let exists = (snapshot.val() !== null);
             if(!exists) {
@@ -79,7 +79,7 @@ class Home extends React.Component {
                         </SongConsumer>
                     </div>
                 </div>
-                <Quicksound/>
+                <Quicksound userInfo={this.state.userInfo}/>
             </>
         )
     }

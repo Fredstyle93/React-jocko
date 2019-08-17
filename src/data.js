@@ -21,18 +21,25 @@ import img8 from './images/jocko_8.jpg'
 
 import good from './sounds/good.mp3';
 import quick1 from './sounds/quick1.mp3';
+import quick2 from './sounds/quick1.mp3';
 
 export const quickSound = [
     {
         url: good,
-        icon: 'FaBeer',
+        icon: "check-square",
         id: 0,
         isSelected:false,
     },
     {
         url: quick1,
-        icon: 'FaTag',
+        icon: "coffee",
         id: 1,
+        isSelected:false,
+    },
+    {
+        url: quick2,
+        icon: "air-freshener",
+        id: 2,
         isSelected:false,
     },
 ];

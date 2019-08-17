@@ -1,5 +1,41 @@
 /* Coucou, TEST */
+.modall::after {
+  content:"";
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #0d0707;
+  z-index: 1;
+  opacity: .4;
+  transition: all ease-in .4s;
+}
+#block-1{
+  z-index: 2;
+  background-color: dimgrey;
+  transition: all ease-in .4s;
+}
 
+.highlight {
+  background-color: #fff;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  box-shadow: -2px 6px 21px -8px rgba(0,0,0,0.75);
+
+}
+
+
+.droppable {
+  z-index: 2;
+  transition: all ease-in .4s;
+}
+
+.droppable [disabled] {
+  opacity: .5;
+}
 body {
   font-family: 'Lato', serif !important;
 

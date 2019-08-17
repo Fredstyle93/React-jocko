@@ -12,6 +12,11 @@ import {config} from "./config/config";
 import 'firebase/auth';
 import ForgotPassword from "./pages/ForgotPassword";
 import UserDetail from './pages/UserDetail';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import {faAirFreshener, faCheckSquare, faCoffee} from '@fortawesome/free-solid-svg-icons'
+
+library.add( fab, faCheckSquare, faCoffee, faAirFreshener);
 
 
 const firebaseApp = firebase.initializeApp(config);
